@@ -1,0 +1,24 @@
+version: "3.3"
+services:
+  uptime-kuma:
+    # Note that this adds the "proxy" network to the container so that Traefik can route to it
+    networks:
+      - proxy
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.uptime.rule: "Host(`${URL_FOR_TRAEFIK}`)" # change to your domain name or use the .env variable as suggested here
+      # The entrypoint is the one we defined in the Traefik configuration, i.e. 'websecure'. Some configurations use 'https' instead.
+      traefik.http.routers.uptime.entrypoints: "websecure"
+      traefik.http.routers.uptime.tls: "true"
+      # prevent IP address access - commented out because not working as expected
+      # traefik.http.routers.uptime.tls.options.default.sniStrict: true
+      traefik.http.services.uptime.loadbalancer.server.port: "3001"
+      # The certificate resolver is the one we defined in the Traefik configuration, i.e. 'leresolver'
+      traefik.http.routers.uptime.tls.certresolver: "leresolver"
+      traefik.docker.network: "proxy"
+
+# The network used for Traefik is "proxy". I've also defined a "default" network for the other Plausible services to use for internal communication.
+networks:
+  default:
+  proxy:
+    external: true
