@@ -1,4 +1,3 @@
-version: "3.3"
 services:
   uptime-kuma:
     # Note that this adds the "proxy" network to the container so that Traefik can route to it
