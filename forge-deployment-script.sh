@@ -22,7 +22,7 @@ if [ -f artisan ]; then
     $FORGE_PHP artisan migrate --force
 fi
 
-echo "Docker up with docker-compose.yml combined with reverse-proxy/traefik/docker-compose.traefik.yml"
+echo "Docker up with docker-compose.yml"
 docker-compose --env-file .env up -d --remove-orphans
 
 echo "Deploy complete."
