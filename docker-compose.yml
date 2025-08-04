@@ -7,11 +7,11 @@ services:
       - ./uptime-kuma-data:/app/data
     labels:
       - traefik.enable=true
-      - traefik.http.routers.uptime.rule=Host(${URL_FOR_TRAEFIK})
-      - traefik.http.routers.uptime.entrypoints=websecure
-      - traefik.http.routers.uptime.tls=true
-      - traefik.http.services.uptime.loadbalancer.server.port=3001
-      - traefik.http.routers.uptime.tls.certresolver=leresolver
+      - traefik.http.routers.uptime-kuma.rule=Host(${URL_FOR_TRAEFIK})
+      - traefik.http.routers.uptime-kuma.entrypoints=websecure
+      - traefik.http.routers.uptime-kuma.tls=true
+      - traefik.http.routers.uptime-kuma.tls.certresolver=leresolver
+      - traefik.http.services.uptime-kuma.loadbalancer.server.port=3001
       - traefik.docker.network=proxy
     networks:
       - proxy
