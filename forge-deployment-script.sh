@@ -23,6 +23,6 @@ if [ -f artisan ]; then
 fi
 
 echo "Docker up with docker-compose.yml combined with reverse-proxy/traefik/docker-compose.traefik.yml"
-docker-compose -f docker-compose.yml -f reverse-proxy/traefik/docker-compose.traefik.yml up -d --remove-orphans
+docker-compose --env-file .env up -d --remove-orphans
 
 echo "Deploy complete."
